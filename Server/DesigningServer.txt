@@ -1,0 +1,54 @@
+
+
+Receive
+Check
+Send
+
+ServerThread
+--Waits to recieve messages
+CotrolThread
+--creates new responses based on received packages
+--performs the checking and sending parts of the message
+
+Scenarios:
+  receive keycode
+  recieve image
+  request unlock/lock from phone request.
+  request door and lock state from phone/webapp
+
+
+UnlockRequestFromPhone:
+Receive
+
+  receive request from phone
+  create new control thread
+
+Check
+  check that the user has access to unlock/lock requested door in "house"
+
+Send
+  send unlock/lock to door
+  send door locked/unlocked to phone/webapp
+
+
+Receive Image:
+Receive -- normal from door
+
+check:
+  send full image to users phones or accounts registered aka the webapp and the phones
+  --
+  wait for user to confirm
+  --
+  recive message to grant or deny access
+  --
+
+Send:
+  Send response to door.
+terminate thread
+
+Requests:
+use 2 bits for where the message is coming from:
+00-webapp/phone(UserRequest)
+01-door->KeypadRequest
+10-door->Camera
+next 4 bits for house number
