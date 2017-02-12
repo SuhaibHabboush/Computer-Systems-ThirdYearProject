@@ -1,0 +1,66 @@
+
+
+import java.io.*;
+
+
+
+public class ControlThread extends Thread 
+{
+	
+	private DatagramPacket packet;
+	
+	protected boolean doorStatus;
+	protected boolean keypadRequest;
+	protected boolean imageRequest;
+	protected boolean lockDoorRequest;
+	
+	
+	
+	  
+	
+	
+	public ControlThread (DatagramPacket packet)	
+	{
+		this.packet=packet;
+		doorStatus = false;
+		keypadRequest = false;
+		imageRequest = false;
+		lockDoorRequest = false;
+	}
+	
+	public void run()
+	{
+		Message[] msg = packet.getData();
+		
+		//Check the first two bits to decide the type where is msg is comign from
+		//00 => webapp/phone, 01 => door->Keypad, 10 => door->Camera
+		
+		
+		
+		if (msg[0] == 0 && msg[1] == 0) //webapp/Phone
+		{
+		}
+		
+		if (msg[0] == 0 && msg[1] == 1) //Door->Keypad
+		{
+			
+			string msgBytes = "" + msg[2] + msg[3] + msg[4] + msg[5];
+			if (Server.getPasscode().equals(msgBytes))
+			{
+				
+			}
+		}
+		
+		if (msg[0] == 1 && msg[1] == 0)
+		{
+		}
+	
+	
+	
+	
+	}
+	
+	
+	
+	
+}
