@@ -48,7 +48,10 @@ terminate thread
 
 Requests:
 use 2 bits for where the message is coming from:
-00-webapp/phone(UserRequest)
-01-door->KeypadRequest
-10-door->Camera
+0000-webapp/phone(UserRequest)
+0001-door->KeypadRequest
+0010-door->Camera
+0011-door->stateOfLockMessage
 next 4 bits for house number
+
+can we please have some instructions on this bitch 
