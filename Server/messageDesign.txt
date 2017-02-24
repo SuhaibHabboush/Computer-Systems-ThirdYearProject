@@ -1,0 +1,20 @@
+To Send messages to and from the server:
+
+Rules for all Mesages:
+  The first byte of informantion represents the house number, this assumes that information and responses for several houses will all be stored on one server.
+    the house number will begin at 0x00 and go to 0xFF;
+
+  The seccond byte of information represents the door number, there are circumstances where no door number will be specified while comunicating with an android or webclient. in this case the door bit will be left as 0x00.
+    Door numbers will begin at 0x01;
+
+  The third byte of information sent will be the opcode message. this is a one byte message that indicates what kind of request is being made to the server. the server request types are detailed below.
+
+  There are many message/request types that the server can interpret:
+  1. Passcode Message from door, "PASS_MSG" is represented with opcode: 0x00
+    this request will be followed by the bytes of a string of four characters making up the hex number system. in java: String.getBytes("1324");
+  2. image request message from door, "IMG_MSG" is represented with opcode: 0x01
+    server will respond with an acnolegement of the door's intentions to send a photo, and the door client will begin sending the image.
+  3. door status update from door, "DOR_STAT" is represented with opcode: 0x02
+    will be folowed by a a one byte code explaining the door's state, eg 0x01 for locked and 0x00 for unlocked.
+  4. Webclient/android door locking requests, "LCK_DOR" is represented with opcode 0x03
+  5.
