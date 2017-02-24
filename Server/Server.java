@@ -67,7 +67,7 @@ public class Server extends Thread{
 
   	public void run() {
   		byte[] msg = packet.getData();
-      //TODO:Check the first two bits to decide the type where is msg is comign from
+      //TODO: brendan Check the first two bits to decide the type where is msg is comign from
   		//house number and door number.
   		if (msg[2] == PASS_MSG) {
         keypadRequest(msg);
@@ -100,7 +100,7 @@ public class Server extends Thread{
       return;
     }
     private void buildResponse(byte key, byte[] msg){
-      //TODO: make responseMsg out of first three bytes of the recievePacket along with unlock key
+      //TODO: make responseMsg out of first three bytes of the recievePacket along with key
       byte[] responseMsg;
 
       responsePacket = new DatagramPacket(responseMsg, responseMsg.length, recievePacket.getAddress(), recievePacket.getPort());
