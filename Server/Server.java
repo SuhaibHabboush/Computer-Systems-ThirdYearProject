@@ -81,7 +81,7 @@ public class Server extends Thread{
     }
 
     private void keypadRequest(byte[] msg){
-      byte[] pascode = new byte[97];
+      byte[] passcode = new byte[97]; // it was written pascode andi changed it to passcode
       int j=0;
       for(int i=3; i<msg.length; i++){
         passcode[j++] = msg[i];
@@ -94,10 +94,22 @@ public class Server extends Thread{
       return;
     }
     private void doorStateMessage(byte[] msg){
-      return;
+      byte[] message = packet.getData();
+      if  (msg [2] == D_STAT_MSG) && (msg [3] == FF) {
+        System.out.println ("Door Locked");
+      }
+      else if (msg [2] == D_STAT_MSG) && (msg [3] == 00) {
+        System.out.println("Door Unlocked");
+      }
+    }
+    protected void setLockState (byte[] msg){
+      protected byte [] lockState;
+      this.lockState = msg;
     }
     private void lockDoorMessage(byte[] msg){
-      return;
+       if  (msg [2] == LK_MSG){
+         setLockState (msg);
+       }
     }
     private void buildResponse(byte key, byte[] msg){
       //TODO: make responseMsg out of first three bytes of the recievePacket along with key
